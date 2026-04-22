@@ -252,6 +252,28 @@
     overflow: hidden;
     padding: 8rem clamp(1.5rem, 5vw, 4rem) 4rem;
   }
+
+  /* Light mode hero background wash */
+  body:not(.dark-mode) #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 75% 20%, rgba(255,107,53,0.13) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 70% at 10% 80%, rgba(232,164,90,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(255,207,135,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Diagonal warm stripe */
+  body:not(.dark-mode) #hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,159,90,0.06) 0%, transparent 45%, rgba(255,107,53,0.05) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .hero-grid {
     position: absolute; inset: 0;
     background-image: linear-gradient(rgba(255,107,53,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,107,53,0.12) 1px, transparent 1px);
@@ -261,6 +283,11 @@
     -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 40%, transparent 100%);
     pointer-events: none;
   }
+
+  body:not(.dark-mode) .hero-grid {
+    background-image: linear-gradient(rgba(255,107,53,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(255,107,53,0.18) 1px, transparent 1px);
+  }
+
   @keyframes gridDrift { from{background-position:0 0;} to{background-position:72px 72px;} }
   .hero-orb-1 {
     position: absolute; top: 8%; right: 2%;
@@ -268,17 +295,57 @@
     background: radial-gradient(circle at 40% 40%, rgba(255,107,53,0.32) 0%, rgba(255,159,90,0.14) 40%, transparent 70%);
     border-radius: 50%; animation: orbFloat 14s ease-in-out infinite; pointer-events: none;
   }
+  body:not(.dark-mode) .hero-orb-1 {
+    background: radial-gradient(circle at 40% 40%, rgba(255,107,53,0.22) 0%, rgba(255,159,90,0.10) 45%, transparent 70%);
+  }
   .hero-orb-2 {
     position: absolute; bottom: 0; left: -8%;
     width: min(42vw,480px); height: min(42vw,480px);
     background: radial-gradient(circle at 60% 60%, rgba(232,164,90,0.22) 0%, rgba(255,107,53,0.08) 50%, transparent 70%);
     border-radius: 50%; animation: orbFloat 18s ease-in-out infinite reverse; pointer-events: none;
   }
+  body:not(.dark-mode) .hero-orb-2 {
+    background: radial-gradient(circle at 60% 60%, rgba(232,164,90,0.18) 0%, rgba(255,107,53,0.08) 50%, transparent 70%);
+  }
   .hero-orb-3 {
     position: absolute; top: 45%; left: 28%;
     width: min(28vw,320px); height: min(28vw,320px);
     background: radial-gradient(circle, rgba(255,207,135,0.15) 0%, rgba(255,159,90,0.06) 50%, transparent 70%);
     border-radius: 50%; animation: orbFloat 11s ease-in-out infinite 3s; pointer-events: none;
+  }
+
+  /* Floating accent shapes - light mode only */
+  .hero-accent-1 {
+    display: none;
+    position: absolute; top: 15%; left: 5%;
+    width: 180px; height: 180px;
+    border: 1px solid rgba(255,107,53,0.15);
+    border-radius: 50%;
+    animation: orbFloat 16s ease-in-out infinite 2s;
+    pointer-events: none;
+  }
+  .hero-accent-2 {
+    display: none;
+    position: absolute; bottom: 20%; right: 8%;
+    width: 100px; height: 100px;
+    border: 1px solid rgba(255,107,53,0.12);
+    transform: rotate(45deg);
+    animation: orbFloat 20s ease-in-out infinite 5s;
+    pointer-events: none;
+  }
+  .hero-accent-3 {
+    display: none;
+    position: absolute; top: 60%; left: 15%;
+    width: 60px; height: 60px;
+    background: rgba(255,107,53,0.08);
+    border-radius: 50%;
+    animation: orbFloat 9s ease-in-out infinite 1s;
+    pointer-events: none;
+  }
+  body:not(.dark-mode) .hero-accent-1,
+  body:not(.dark-mode) .hero-accent-2,
+  body:not(.dark-mode) .hero-accent-3 {
+    display: block;
   }
   @keyframes orbFloat {
     0%,100%{transform:translate(0,0) scale(1);}
@@ -461,6 +528,17 @@
     padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem);
     position: relative;
   }
+
+  /* Light mode: alternate section tinting for visual rhythm */
+  body:not(.dark-mode) #about { background: var(--bg); }
+  body:not(.dark-mode) #how-i-work { background: var(--bg2); }
+  body:not(.dark-mode) #skills { background: var(--bg); }
+  body:not(.dark-mode) #experience { background: var(--bg2); }
+  body:not(.dark-mode) #education { background: var(--bg); }
+  body:not(.dark-mode) #projects { background: var(--bg2); }
+  body:not(.dark-mode) #certifications { background: var(--bg); }
+  body:not(.dark-mode) #beyond { background: var(--bg2); }
+  body:not(.dark-mode) #contact { background: var(--bg); }
 
   .section-inner {
     max-width: 1200px;
@@ -1669,12 +1747,15 @@
   <div class="hero-orb-1"></div>
   <div class="hero-orb-2"></div>
   <div class="hero-orb-3"></div>
+  <div class="hero-accent-1"></div>
+  <div class="hero-accent-2"></div>
+  <div class="hero-accent-3"></div>
   <div class="hero-lines"></div>
   <div class="hero-content">
     <div>
-      <div class="hero-eyebrow">Industry Process Expert · MBA Candidate</div>
+      <div class="hero-eyebrow">Technical Pre-Sales · Digital Transformation · MBA Candidate</div>
       <h1>Maximos<br><em>Stavrou</em></h1>
-      <p class="hero-sub">Chemical engineer turned digital transformation strategist, helping Fortune 500 CPG & Life Sciences organizations modernize R&D through data-driven solutions and enterprise software.</p>
+      <p class="hero-sub">Technical pre-sales professional delivering cloud and hybrid digital transformation for Fortune 500 Life Sciences and CPG accounts — guiding enterprise customers from architecture design to multimillion-dollar decisions.</p>
       <div class="hero-ctas">
         <a href="#experience" class="btn-primary">View My Work →</a>
         <a href="#contact" class="btn-outline">Get in Touch</a>
@@ -1712,7 +1793,7 @@
         <h2>Engineering Meets<br>Digital Strategy</h2>
         <p>I'm a Chemical Engineering graduate from Northeastern University, now driving enterprise digital transformation at Dassault Systèmes (BIOVIA). With a background spanning formulation science, process engineering, and technical consulting, I bridge the gap between R&D complexity and scalable software solutions.</p>
         <p>Currently pursuing my MBA at Boston College's Carroll School of Management, I'm building the business strategy foundations to complement my technical depth — enabling me to operate confidently at the intersection of product, customers, and growth.</p>
-        <p>I'm a bilingual (English & Greek) former Cyprus national field hockey player with the competitive drive to match.</p>
+        <p>I'm a bilingual (English & Greek) former Cyprus national field hockey player.</p>
         <div class="about-highlights">
           <div class="highlight-item">
             <div class="highlight-dot"></div>
@@ -1761,6 +1842,18 @@
       </div>
     </div>
     <div class="skills-grid">
+      <div class="skill-category" data-reveal>
+        <div class="skill-cat-icon">☁️</div>
+        <div class="skill-cat-title">Cloud & Architecture</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Cloud-native SaaS</span>
+          <span class="skill-tag">Hybrid Cloud / On-prem</span>
+          <span class="skill-tag">Multi-platform Architecture</span>
+          <span class="skill-tag">Pre-Sales Engineering</span>
+          <span class="skill-tag">PoC Design</span>
+          <span class="skill-tag">RFx Cycles</span>
+        </div>
+      </div>
       <div class="skill-category" data-reveal>
         <div class="skill-cat-icon">💻</div>
         <div class="skill-cat-title">Technical</div>
@@ -1829,11 +1922,10 @@
         <div class="timeline-title">Industry Process Expert (BIOVIA)</div>
         <div class="timeline-body">
           <ul>
-            <li>Serves as a global expert in digital transformation engagements for Fortune 500 CPG and Life Sciences accounts.</li>
-            <li>Collaborates with R&D to influence product roadmaps and develop shareable playbooks, competitive battlecards, and technical assets.</li>
-            <li>Designs and implements scalable workflow models and process optimization, delivering measurable efficiency gains for customers.</li>
-            <li>Architects ML-integrated protocols using Pipeline Pilot with embedded Python, demonstrating predictive, data-driven insights.</li>
-            <li>Acts as a strategic advisor to senior stakeholders by evaluating ROI and operational KPIs.</li>
+            <li>Guides enterprise customers through cloud adoption and hybrid integration decisions, navigating regulatory compliance, data residency, and infrastructure constraints across Life Sciences and CPG accounts globally.</li>
+            <li>Architects ML-integrated workflows using Pipeline Pilot with embedded Python, demonstrating AI-driven analytics operationalized across cloud and hybrid environments.</li>
+            <li>Collaborates with R&D and product management to influence platform roadmap — developing competitive battlecards and technical playbooks to scale pre-sales success across regional teams.</li>
+            <li>Acts as strategic advisor to senior stakeholders, translating solution capabilities into quantifiable ROI, operational KPIs, and executive-level business cases that accelerate deployment decisions.</li>
           </ul>
         </div>
       </div>
@@ -1844,9 +1936,10 @@
         <div class="timeline-title">Industry Process Consultant (BIOVIA)</div>
         <div class="timeline-body">
           <ul>
-            <li>Conducted market and competitive analyses to drive product strategy and customer-centric solutions.</li>
-            <li>Built and delivered technical demonstrations used in sales cycles (RFIs, RFPs) influencing multi-million-dollar software purchases.</li>
-            <li>Selected for the Emerging Leadership Program to develop technical team leadership competencies.</li>
+            <li>Participated in end-to-end pre-sales cycles (RFIs, RFPs, product demos) directly influencing multimillion-dollar software purchases across Life Sciences and CPG accounts worldwide.</li>
+            <li>Designed and delivered PoC engagements validating cloud and hybrid platform capabilities for regulated-industry customers, reducing technical risk and accelerating time-to-close on complex deals.</li>
+            <li>Resolved technical blockers during active sales cycles by collaborating with engineering teams, converting customer-surfaced objections into product roadmap influence.</li>
+            <li>Selected for the Emerging Leadership Program, recognizing cross-functional leadership impact and high-potential designation within the organization.</li>
           </ul>
         </div>
       </div>
@@ -1857,9 +1950,8 @@
         <div class="timeline-title">Formulation Scientist & Process Engineer</div>
         <div class="timeline-body">
           <ul>
-            <li>Managed end-to-end formulation scale-up and optimization for a natural haircare portfolio.</li>
-            <li>Contributed to a $3M cost savings initiative through ingredient simplification and process redesign.</li>
-            <li>Served as ELN and LIMS Superuser, leading system governance and training to optimize data integrity and R&D digital workflows.</li>
+            <li>Served as ELN and LIMS Superuser; led enterprise platform governance, onboarding, and adoption across R&D teams, bridging IT, data, and science functions to drive digital workflow modernization.</li>
+            <li>Led a $3M cost savings initiative through data-driven ingredient simplification and process redesign; managed end-to-end formulation scale-up coordinating across R&D, supply chain, and third-party manufacturers.</li>
           </ul>
         </div>
       </div>
@@ -2176,8 +2268,8 @@
           <div class="beyond-interest-item">
             <span class="beyond-interest-icon">&#128214;</span>
             <div>
-              <strong>Sci-Fi & Fantasy</strong>
-              <p>My go-to escape. Red Rising, Project Hail Mary, Tender is the Flesh — I love stories that build entirely new worlds or push the limits of imagination. Great sci-fi isn't just entertainment, it's applied thinking about what's possible.</p>
+              <strong>Reading</strong>
+              <p>My go-to escape. Red Rising, Project Hail Mary, Piranesi — I love stories that build entirely new worlds or push the limits of imagination. Great fiction isn't just entertainment, it's applied thinking about what's possible.</p>
               <div class="reading-genres">
                 <span class="reading-genre-tag">Sci-Fi</span>
                 <span class="reading-genre-tag">Fantasy</span>
@@ -2190,14 +2282,14 @@
             <span class="beyond-interest-icon">&#127952;</span>
             <div>
               <strong>Former National Athlete</strong>
-              <p>Represented Cyprus in international field hockey from U16 through the EHF qualifiers in 2015. The competitive mindset never really switches off.</p>
+              <p>Represented Cyprus in international field hockey competitions (U16, U18, Mens) through the EHF qualifiers from 2012-2015.</p>
             </div>
           </div>
           <div class="beyond-interest-item">
             <span class="beyond-interest-icon">&#127758;</span>
             <div>
               <strong>Bilingual & Globally Minded</strong>
-              <p>Native English and Greek speaker — an edge built into my background, not bolted on.</p>
+              <p>Native English and Greek speaker.</p>
             </div>
           </div>
         </div>
